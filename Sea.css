@@ -1,0 +1,86 @@
+body{
+    background-color: black;
+}
+/*td{*/
+/*    !*position: relative;*!*/
+/*    border: red 1px solid;*/
+/*!*    width: 91px;*!*/
+/*!*    height: 91px;*!*/
+/*!*    margin: auto;*!*/
+/*!*    left: 169px;*!*/
+/*!*    top: 96px;*!*/
+/*}*/
+
+.firstTable{
+    position: relative;
+    border: red 1px solid;
+    width: 675px;
+    height: 678px;
+    margin: auto;
+    top: 74px;
+    right: 350px;
+    padding: 0;
+    cursor: pointer;
+    float: left;
+}
+
+.secondTable{
+    position: relative;
+    border: red 1px solid;
+    width: 675px;
+    height: 678px;
+    margin: auto;
+    top: 74px;
+    left: 350px;
+    padding: 0;
+    cursor: pointer;
+}
+
+div#board{
+    position: relative;
+    width: 1024px;
+    height: 863px;
+    background-image: url("board.jpg");
+    background-repeat: no-repeat;
+    margin: auto;
+}
+
+form{
+    position: absolute;
+    left: 368px;
+    bottom: 0;
+}
+
+input{
+    box-shadow: #31c000 0 0 25px;
+    background-color: #31c000 ;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#fireButton{
+    cursor: pointer;
+}
+
+#guessInput{
+    width: 250px;
+    height: 25px;
+}
+
+.hit{
+    background: url("ship.png") center center no-repeat;
+}
+
+.miss{
+    background: url("miss.png") center center no-repeat;
+}
+
+#messageArea{
+    font-size: 24px;
+    color: #31c000;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 500;
+}

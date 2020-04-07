@@ -1,0 +1,156 @@
+body{
+    background-color: black;
+}
+/*td{*/
+/*    position: relative;*/
+/*    border: red 1px solid;*/
+/*    width: 91px;*/
+/*    height: 91px;*/
+/*    margin: auto;*/
+/*    left: 169px;*/
+/*    top: 96px;*/
+/*}*/
+
+.firstTable{
+    position: relative;
+    /*border: red 1px solid;*/
+    width: 750px;
+    height: 725px;
+    margin: auto;
+    top: 20px;
+    right: 375px;
+    padding: 0;
+    cursor: pointer;
+    float: left;
+}
+
+.secondTable{
+    position: relative;
+   /* border: red 1px solid;*/○
+    width: 750px;
+    height: 725px;
+    margin: auto;
+    bottom: 708px;
+    left: 375px;
+    padding: 0;
+    cursor: pointer;
+    float: right;
+}
+.container{
+    display: inline-block;
+    width: 1800px;
+    height: 950px;
+    background-image: url("myFieldLittle.png");
+    background-image: url("myFieldLittle.png");
+}
+
+div#board{
+    position: relative;
+    width: 900px;
+    height: 900px;
+    /*background-image: url("myField.png");*/
+    background-repeat: no-repeat;
+
+    margin: auto;
+}
+
+/*div#board1{*/
+/*    position: relative;*/
+/*    width: 1200px;*/
+/*    height: 1200px;*/
+/*    background-image: url("myField.png");*/
+/*    background-repeat: no-repeat;*/
+/*    margin: auto;*/
+/*    background-size: cover;*/
+/*    display: inline-block;*/
+/*}*/
+
+form{
+    position: absolute;
+    left: 468px;
+    bottom: -10px;
+}
+
+input{
+    box-shadow: #31c000 0 0 25px;
+    background-color: #31c000 ;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    text-align: center;
+}
+
+#fireButton{
+    cursor: pointer;
+}
+
+#guessInput{
+    width: 250px;
+    height: 25px;
+}
+
+.hit{
+    background: url("shipLittle.png") center center no-repeat;
+    transition-duration: 0.3s;
+}
+
+.miss{
+    background: url("newMiss.png") center center no-repeat;
+    transition-duration: 0.3s;
+}
+
+.sunk{
+    background: url("bomb 0.2.png") center center no-repeat;
+    transition-duration: 0.3s;
+}
+
+.x{
+    background: url("newX.png") center center no-repeat;
+    transition-duration: 0.3s;
+}
+
+#messageArea{
+    font-size: 24px;
+    color: #31c000;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+#course{
+    font-size: 24px;
+    color: #31c000;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 500;
+}
+.fourDeck{
+    display: inline-block;
+    cursor: pointer;
+    /*border: red 1px solid;*/
+}
+
+.ships{
+    width: 1000px;
+    float: right;
+}
+
+.count, .justX{
+    font-size: 24px;
+    color: #31c000;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 500;
+    margin: 5px 10px;
+}
+
+.outOffShips{
+    font-size: 14px;
+    color: #31c000;
+    text-align: center;
+    font-family: Verdana;
+    font-weight: 500;
+    margin: 5px 10px;
+}
+
