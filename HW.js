@@ -6,7 +6,7 @@ function palindrom(word) {
     } else{
         console.log(str + ' - Это не палиндром')
     }
-
+//hfshfsuihfsuiuhi
 }
 
 // palindrom('racecar');
