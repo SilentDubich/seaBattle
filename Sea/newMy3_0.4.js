@@ -206,33 +206,18 @@ var model = {
         return true;
     },
 
-    posShip: function () {
-        var locations;
+    posShip: function (arrayOfShips, startIdPosition) {
+        let locations;
         for (let i = this.numShips - 1; i >= 0; i--){
             do {
-                locations = this.generateShip(this.ships[i].size, '')
-            } while (this.locNearby(locations.loc, this.ships));
-            this.ships[i].locations = locations.loc;
-            this.ships[i].reserve = locations.res;
+                locations = this.generateShip(arrayOfShips[i].size, startIdPosition)
+            } while (this.locNearby(locations.loc, arrayOfShips));
+            arrayOfShips[i].locations = locations.loc;
+            arrayOfShips[i].reserve = locations.res;
         }
-        console.log("Расположение кораблей ИИ : ");
-        console.log(this.ships);
+        console.log("Расположение кораблей : ");
+        console.log(arrayOfShips);
     },
-
-    posShipPl: function (){
-        var locations;
-        for (let i = player.shipNum - 1; i >= 0; i--){
-            do {
-                locations = this.generateShip(player.plShips[i].size, '0')
-            } while (this.locNearby(locations.loc, player.plShips));
-            player.plShips[i].locations = locations.loc;
-            player.plShips[i].reserve = locations.res;
-        }
-        console.log("Расположение кораблей игрока : ");
-        console.log(player.plShips);
-    },
-
-
 
     locNearby: function nearby(reserve, context){
         for (var i = 0; i < this.numShips; i++) {
@@ -392,9 +377,10 @@ var control = {
 
 
 function init() {
-    model.posShip();
-    model.posShipPl();
+    model.posShip(model.ships, '');
+    model.posShip(player.plShips, '0');
     player.plDispShip();
+    console.log('ships', player.plShips);
     control.course();
         document.onclick = function(e) { // составляем возможность топить корабли по кликам по клетке
             var name = e.target.id;
