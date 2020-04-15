@@ -65,10 +65,10 @@ var model = {
     moreShoots: false,
     mbShoots: 100,
     fire: function(guess) {
-        for (var i = 0; i < this.numShips; i++) {
-            var ship = this.ships[i];
-            var index = ship.locations.indexOf(guess);
-            var elem;
+        for (let i = 0; i < this.numShips; i++) {
+            let ship = this.ships[i];
+            let index = ship.locations.indexOf(guess);
+            let elem;
 
             if(ship.hits[index] === "hits"){
                 view.displayMessage('Ты сюда уже стрелял !');
@@ -82,7 +82,7 @@ var model = {
                     this.shipSunk++;
                     this.ships[i].sunk = true;
                     view.displayMessage('Потопил !');
-                    for (var j = 0; j < ship.reserve.length; j++){
+                    for (let j = 0; j < ship.reserve.length; j++){
                         elem = document.getElementById(ship.reserve[j]);
                         if (ship.reserve[j].length === 2 && !elem.classList.contains('hit')){
                             view.displaySunk(ship.reserve[j]);
@@ -99,7 +99,7 @@ var model = {
     },
 
     fireBotNew: function(newRand, choice) {
-        var index, rand, shoot, select;
+        let index, rand, shoot, select;
         if (model.again){
             select = choice;
             rand = newRand;
@@ -109,7 +109,7 @@ var model = {
         }
         console.log(model.shootsLoc);
         shoot = model.shootsLoc[rand];
-        for (var i = 0; i < player.shipNum; i++){
+        for (let i = 0; i < player.shipNum; i++){
             index = player.plShips[i].locations.indexOf(model.shootsLoc[rand]);
             if (index >= 0){
                 player.plShips[i].hits[index] = 'hits';
@@ -122,11 +122,11 @@ var model = {
                     player.plShips[i].sunk = true;
                     view.displayMessage('Бот потопил твой корабль !');
                     //this.shootsLoc.splice(rand, 1);
-                    for (var j = 0; j < player.plShips[i].reserve.length; j++){
-                        var elem = document.getElementById(player.plShips[i].reserve[j]);
+                    for (let j = 0; j < player.plShips[i].reserve.length; j++){
+                        let elem = document.getElementById(player.plShips[i].reserve[j]);
                         if (player.plShips[i].reserve[j].length === 3 && !elem.classList.contains('x')){
                             view.displaySunk(player.plShips[i].reserve[j]);
-                            var res = model.shootsLoc.indexOf(player.plShips[i].reserve[j]);
+                            let res = model.shootsLoc.indexOf(player.plShips[i].reserve[j]);
                             if (res >= 0){
                                 model.shootsLoc.splice(res, 1);
                             }
@@ -159,9 +159,9 @@ var model = {
 
 
     secondShoot: function(rand, shoot, select){
-        var newRand, choice;
-        var again = shoot.split('');
-        var count = 0;
+        let newRand, choice;
+        let again = shoot.split('');
+        let count = 0;
         do {
             if (model.moreShoots){
                 choice = select;
@@ -181,7 +181,7 @@ var model = {
             }
             count++;
         } while (model.shootsLoc.indexOf(newRand) < 0);
-        var secondShoot = model.shootsLoc.indexOf(newRand);
+        let secondShoot = model.shootsLoc.indexOf(newRand);
         return window.setTimeout(model.fireBotNew, 1000, secondShoot, choice)
 
     },
@@ -198,7 +198,7 @@ var model = {
     },
 
     isSunk: function (ship){
-        for(var i = 0; i < ship.hits.length; i++){
+        for(let i = 0; i < ship.hits.length; i++){
             if (ship.hits[i] !== "hits"){
                 return false;
             }
@@ -206,12 +206,12 @@ var model = {
         return true;
     },
 
-    posShip: function (arrayOfShips, startIdPosition) {
+    posShip: function (arrayOfShips, startIdPosition, countOfShips) {
         let locations;
-        for (let i = this.numShips - 1; i >= 0; i--){
+        for (let i = countOfShips - 1; i >= 0; i--){
             do {
                 locations = this.generateShip(arrayOfShips[i].size, startIdPosition)
-            } while (this.locNearby(locations.loc, arrayOfShips));
+            } while (this.locNearby(locations.loc, arrayOfShips, countOfShips));
             arrayOfShips[i].locations = locations.loc;
             arrayOfShips[i].reserve = locations.res;
         }
@@ -219,10 +219,10 @@ var model = {
         console.log(arrayOfShips);
     },
 
-    locNearby: function nearby(reserve, context){
-        for (var i = 0; i < this.numShips; i++) {
-            var ship = context[i];
-            for (var k = 0; k < reserve.length; k++) {
+    locNearby(reserve, context, countOfShips){
+        for (let i = 0; i < countOfShips; i++) {
+            let ship = context[i];
+            for (let k = 0; k < reserve.length; k++) {
                 if (ship.reserve.indexOf(reserve[k]) >= 0) {
                     return true;
                 }
@@ -232,8 +232,8 @@ var model = {
     },
 
     generateShip: function (shipSize, pl) {
-        var row,col;
-        var pos = Math.floor(Math.random() * 2);
+        let row,col;
+        let pos = Math.floor(Math.random() * 2);
         if (pos === 1) { // horizontal
             row = Math.floor(Math.random() * this.board);
             col = Math.floor(Math.random() * (this.board - shipSize));
@@ -241,9 +241,9 @@ var model = {
             row = Math.floor(Math.random() * (this.board - shipSize));
             col = Math.floor(Math.random() * this.board);
         }
-        var newShipLocations = [];
-        var reserved = [];
-        for (var i = 0; i < shipSize; i++) {
+        let newShipLocations = [];
+        let reserved = [];
+        for (let i = 0; i < shipSize; i++) {
             if (pos === 1) {
                 newShipLocations.push(pl + row.toString() + (col + i).toString());
                 reserved.push(pl + (row + 1).toString() + (col + i).toString());
@@ -254,9 +254,9 @@ var model = {
                 reserved.push(pl + (row + i).toString() + (col - 1).toString());
             }
         }
-        var rowRes = row - 1;
-        var colRes = col - 1;
-        for (var k = 0; k < 3; k++){
+        let rowRes = row - 1;
+        let colRes = col - 1;
+        for (let k = 0; k < 3; k++){
             if (pos === 1){
                 reserved.push(pl + (rowRes + k).toString() + colRes.toString());
                 reserved.push(pl + (rowRes + k).toString() + (col + shipSize));
@@ -265,7 +265,7 @@ var model = {
                 reserved.push(pl + (row + shipSize).toString() + (colRes + k).toString());
             }
         }
-        var newReserved = reserved.concat(newShipLocations);
+        let newReserved = reserved.concat(newShipLocations);
         return {
             loc: newShipLocations,
             res: newReserved,
@@ -289,8 +289,8 @@ var player = {
         { locations: [], reserve: [], hits: ["", "", "", ""], sunk: false, size: 4 },
     ],
     plDispShip: function () {
-        for (var i = 0; i < this.shipNum; i++){
-            for (var k = 0; k < this.plShips[i].locations.length; k++){
+        for (let i = 0; i < this.shipNum; i++){
+            for (let k = 0; k < this.plShips[i].locations.length; k++){
                 view.displayHit(this.plShips[i].locations[k]);
             }
         }
@@ -318,7 +318,7 @@ var control = {
         }
     },
     processGu: function (guess) {
-        var elem = document.getElementById(guess);
+        let elem = document.getElementById(guess);
         if (elem.classList.contains('sunk') || elem.classList.contains('miss') || elem.classList.contains('hit')){
             view.displayMessage('Сюда стрелять нельзя !')
         }
@@ -328,10 +328,10 @@ var control = {
             view.displayCourse('Серьезно ? Игра окончена уже !')
         }
         else if (isNaN(guess)){
-            var location = this.parseGu(guess);
+            let location = this.parseGu(guess);
             if (location){
                 this.guesses++;
-                var hit = model.fire(location);
+                let hit = model.fire(location);
                 if (hit){
                     control.plCourse = true;
                     control.course();
@@ -343,12 +343,10 @@ var control = {
             }
         }
         else {
-            var location = guess;
+            let location = guess;
             this.guesses++;
-            var hit = model.fire(location);
+            let hit = model.fire(location);
             if (hit) {
-                control.plCourse = true;
-                control.botCourse = false;
                 control.course();
             } else {
                 control.plCourse = false;
@@ -377,15 +375,14 @@ var control = {
 
 
 function init() {
-    model.posShip(model.ships, '');
-    model.posShip(player.plShips, '0');
+    model.posShip(model.ships, '', model.numShips);
+    model.posShip(player.plShips, '0', player.shipNum);
     player.plDispShip();
-    console.log('ships', player.plShips);
-    control.course();
+        control.course();
         document.onclick = function(e) { // составляем возможность топить корабли по кликам по клетке
-            var name = e.target.id;
-            if (name.length === 2){
-                control.processGu(name);
+            let shoot = e.target.id;
+            if (shoot.length === 2){
+                control.processGu(shoot);
             }
         };
 
