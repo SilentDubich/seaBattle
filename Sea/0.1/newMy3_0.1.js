@@ -1,7 +1,7 @@
 var view ={
     displayMessage: function (msg) {
         var messageDisplay = document.querySelector('#messageArea');
-        messageArea.innerHTML = msg;
+        messageDisplay.innerHTML = msg;
     },
     displayHit: function (location) {
         var hits = document.getElementById(location);
@@ -17,7 +17,7 @@ var view ={
     },
     displayCourse: function (msg) {
         var messageDisplay = document.querySelector('#course');
-        course.innerHTML = msg;
+        messageDisplay.innerHTML = msg;
     },
     displayBotHit: function (location) {
         var hits = document.getElementById(location);
